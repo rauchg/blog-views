@@ -1,0 +1,19 @@
+{
+  "name": "rauchg-blog-views",
+  "dependencies": {
+    "firebase": "^3.6.4",
+    "firebase-admin": "^4.0.4",
+    "micro": "^6.1.0",
+    "ms": "^0.7.2",
+    "request-ip": "^1.2.3"
+  },
+  "now": {
+    "files": [
+      "index.js",
+      "lib"
+    ]
+  },
+  "scripts": {
+    "start": "micro"
+  }
+}
