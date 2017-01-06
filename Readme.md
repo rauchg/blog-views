@@ -8,6 +8,9 @@ It's [aliased](https://zeit.co/blog/now-alias) to `https://rauchg-blog-views.now
 
 ## How to use
 
+You must populate `service-account.json` file first, which you can download
+from the [Firebase accounts tab](https://console.firebase.google.com/project/_/settings/serviceaccounts/adminsdk).
+
 ### Development
 
 ```
@@ -15,7 +18,6 @@ npm start
 ```
 
 ### Deployment
-
 
 Install [now](https://zeit.co/download) and run:
 
