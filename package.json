@@ -9,6 +9,7 @@
   },
   "now": {
     "files": [
+      "service-account.json",
       "index.js",
       "lib"
     ]
