@@ -2,6 +2,8 @@ const db = require('./lib/db')
 const verify = require('./lib/verify')
 const { parse } = require('url')
 
+let add = 0
+
 module.exports = async (req, res) => {
   // ensure no duplicate voting
   verify(req)
@@ -14,8 +16,12 @@ module.exports = async (req, res) => {
     throw err
   }
 
-  const ref = await db.ref('views').child(id)
-  const total = ((await ref.once('value')).val() || 0) + 1
-  await ref.set(total)
+  add++
+  const ref = db.ref('views').child(id)
+  const total = ((await ref.once('value')).val() || 0) + add
+  if (add) {
+    add = 0
+    await ref.set(total)
+  }
   return { total }
 }
