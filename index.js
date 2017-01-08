@@ -1,8 +1,6 @@
-const db = require('./lib/db')
 const verify = require('./lib/verify')
 const { parse } = require('url')
-
-let add = 0
+const increment = require('./lib/increment-views')
 
 module.exports = async (req, res) => {
   const orig = req.headers.origin
@@ -22,12 +20,6 @@ module.exports = async (req, res) => {
     throw err
   }
 
-  add++
-  const ref = db.ref('views').child(id)
-  const total = ((await ref.once('value')).val() || 0) + add
-  if (add) {
-    add = 0
-    await ref.set(total)
-  }
-  return { total }
+  const { snapshot } = await increment(id)
+  return { total: snapshot.val() }
 }
